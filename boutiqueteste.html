@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Digital BOOKS</title>
+    <link rel="stylesheet" href="./css/projet.css">
+</head>
+
+<body>
+    <!--Navbar-->
+
+    <!--FIN Navbar-->
+    `<div>
+        <div class="cd_container ste_container">
+            <div class="cd_panier">
+                <table>
+                    <thead>
+                        <tr>
+                            <td></td>
+                            <td>titre </td>
+                            <td>prix </td>
+                        </tr>
+                    </thead>
+
+                    <tr v-for="bag in panier">
+                        <td><img :src="bag.image" /></td>
+                        <td>{{bag.titre}} </td>
+                        <td>{{bag.prixht}} </td>
+                    </tr>
+                    <p>Votre panier est de {{this.total}}</p>
+                    <button @click.prevent="show=!show" class="submit-button">Payer</button>
+                </table>
+            </div>
+            <div v-if="show">
+                <div class="cd_cards">
+                    <div v-for="stock in stocks" :img="stock.image" :title="stock.titre" :prixht="stock.prixht"
+                        :quantite="stock.quantite" :date_de_parution="stock.date_de_parution">
+
+                        <div class="cd_carte">
+                            <h2 class="titre">{{stock.titre}}</h2>
+                            <img id="img" :src="stock.image">
+
+                            <p>Prix: {{stock.prixht}} €</p>
+                            <p>Quantité: {{stock.quantite}}</p>
+                            <p>Date de sortie: {{stock.date_de_parution}}</p>
+
+                        </div>
+                        <button class="button_panier" @click="">Cliquer !!!</button>
+                        <button class="button_panier" @click="addArticle(stock)">Acheter</button>
+
+                    </div>
+                </div>
+            </div>
+            <div v-else-if="button_hide">
+                <form class="contact-form cd_contact_boutique">
+                    <h2 class="">Renseignements</h2>
+                    <br>
+                    <input v-model="nom" placeholder=" Entrez votre nom" class="inputcontact">
+                    <br>
+                    <input v-model="prenom" placeholder=" Entrez votre prenom" class="inputcontact">
+                    <br>
+                    <input v-model="age" placeholder=" Entrez votre age" class="inputcontact">
+                    <br>
+
+                    <input type="checkbox" name="consentement" id="consent" />
+                    <label for="consent" class="checkbox-label">
+                        J'accepte que mes données ci-dessus soient traitées à des
+                        fins de prises de contact commerciales.
+                    </label>
+
+                    <br>
+
+                    <button @click.prevent="button_hide=!button_hide" class="submit-button">Envoyer</button>
+                </form>
+
+            </div>
+            <div v-else-if="message_confirmation">
+                <form class="adresse-form">
+                    <h2 class="">Adresse :</h2>
+                    <br>
+                    <input v-model="nom" placeholder=" Entrez votre nom" class="inputcontact">
+                    <br>
+                    <input v-model="adresse" placeholder=" Entrez votre prenom" class="inputcontact">
+                    <br>
+                    <input v-model="codepostal" placeholder=" Entrez votre code postal" class="inputcontact">
+                    <br>
+                    <input v-model="ville" placeholder=" Entrez votre ville" class="inputcontact">
+                    <br>
+
+                    <input type="checkbox" name="consentement" id="consent" />
+                    <label for="consent" class="checkbox-label">
+                        J'accepte que mes données ci-dessus soient traitées à des
+                        fins de prises de contact commerciales.
+                    </label>
+                    <br>
+
+
+                    <button @click.prevent="message_confirmation=!message_confirmation"
+                        v-class="submit-button">Envoyer</button>
+                </form>
+            </div>
+            <div v-else>
+                <h4 class="lsh_popup_boutique">Votre commande a bien été prise en compte</h4>
+            </div>
+
+
+        </div>
+
+    </div>`
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="./js/projet.js"></script>
+</body>
+
+</html>
